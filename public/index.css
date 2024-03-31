@@ -1,0 +1,80 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+* {
+    box-sizing: border-box;
+}
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+}
+.section {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    height: 100vh;
+    width: 20%;
+    background-color: aqua;
+    border-right: 3px solid black;
+}
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 80%;
+    background-color: beige;
+
+}
+.chat-box {
+    height: 90%;
+    width: 80%;
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+.receiver {
+    border: 3px solid black;
+    border-radius: 5px;   
+    background-color: aqua;
+    text-align: right;
+    padding: 10px;
+}
+.msg {
+    height: 81%;
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+input[type="text"] {
+    width: 40%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 3px solid black;
+    border-radius: 10px;
+    transition: width 0.5s;
+}
+input[type="text"]:hover {
+  width: 70%;
+  
+}
+
+button {
+    background-color: aqua;
+    padding: 10px;
+    margin: 0 10px;
+}
+
