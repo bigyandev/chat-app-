@@ -2,11 +2,13 @@ const path = require("path")
 const { getUser } = require("../utlities/service")
 
 async function handleHomePage(req,res) {
-    const tokenUid = req.cookies?.uid
-    if(!tokenUid) return res.redirect("/login")
-    const token = getUser(tokenUid)
-    if(!token) return res.redirect("/login")
-    res.sendFile(path.join(__dirname, "../public", "index.html"))
+    const tokenId = req.cookies.uid;
+    console.log(tokenId)
+    if(!tokenId) return res.redirect("/login")
+    const user = getUser(tokenId)
+    console.log(user)
+    if(!user) return res.redirect("/login")
+     res.sendFile(path.join(__dirname, "../public", "index.html"))
 }
 
 async function handleLogIn(req,res) {

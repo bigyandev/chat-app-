@@ -7,8 +7,7 @@ function setUser(user) {
   },secret)
 }
 
-function getUser(token) {
-     const tokenId = token || null
+function getUser(tokenId) {
      return jwt.verify(tokenId,secret)
 }
 
