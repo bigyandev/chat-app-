@@ -30,51 +30,82 @@ body {
     height: 100vh;
     width: 80%;
     background-color: beige;
+    overflow: hidden;
 
 }
 .chat-box {
-    height: 90%;
+    height: 700px;
     width: 80%;
     background-color: white;
     border: 3px solid black;
     border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
 }
 .receiver {
     border: 3px solid black;
     border-radius: 5px;   
     background-color: aqua;
     text-align: right;
+    width: 100%;
     padding: 10px;
 }
-.msg {
-    height: 81%;
-    width: 75%;
+.chat-message {
+    width: 90%;
+    height: 700px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    
+    justify-content: start;
+    align-items: start;
+    flex-direction: column; 
+    overflow-y: scroll;   
 }
-form {
+.message {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #e6e9ff;
+    border-radius: 5px;
+}
+.meta {
+    font-size: 15px;
+    font-weight: bold;
+    color: #7386ff;
+    opacity: 0.7;
+    margin-bottom: 7px
+
+
+}
+.form {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    height: 60px;
+    width: 100%;
+    bottom: 0;
+    padding: 50px;
+    background-color: aqua;
 }
 input[type="text"] {
-    width: 40%;
+    width: 30em;
     padding: 10px;
     box-sizing: border-box;
     border: 3px solid black;
     border-radius: 10px;
-    transition: width 0.5s;
+    
 }
-input[type="text"]:hover {
-  width: 70%;
-  
+span {
+    color: red
 }
 
 button {
-    background-color: aqua;
+    background-color: #7386ff;
     padding: 10px;
     margin: 0 10px;
+    color: white;
+    border: 3px solid white;
 }
 

@@ -3,7 +3,8 @@ const secret = "12345"
 
 function setUser(user) {
    return jwt.sign({
-    email: user.email
+    email: user.email,
+    username: user.username
   },secret)
 }
 
