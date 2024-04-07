@@ -3,6 +3,7 @@ const app = express()
 const path = require("path")
 const http = require("http")
 const cookieParser = require("cookie-parser")
+const cookie = require("cookie")
 const {Server} = require("socket.io")
 const connectDB = require("./connection");
 const server = http.createServer(app)
@@ -31,17 +32,17 @@ connectDB("mongodb://127.0.0.1:27017/testingjwt")
 
 //socket.io 
 io.on("connection", (socket) => {
-    console.log(socket.request.username)
+    const username = (socket.handshake.headers.referer.split("=")[1])
     //broadcast when user is connected    socket.emit("message", formatMessage("welcome to the chat"))
-    socket.broadcast.emit("message", formatMessage(botName, "a user has joined the chat")) 
+    socket.broadcast.emit("message", formatMessage(botName, `${username.toUpperCase()} has joined the chat`)) 
     //runs when client disconnects 
     socket.on("disconnect", () => {
-        io.emit("message", formatMessage(botName,"a user has left the chat"))
+        io.emit("message", formatMessage(botName,`${username.toUpperCase()} has left the chat`))
     })
 
     //listen for msg
     socket.on("chatMsg", (msg) => {
-        io.emit("message", formatMessage("user", msg)) 
+        io.emit("message", formatMessage(username.toUpperCase(), msg)) 
     })
 
 

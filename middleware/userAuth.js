@@ -6,14 +6,17 @@ async function checkForAuthentication(req,res,next) {
     if(!tokenId) return next()
     try {
       const user = await getUser(tokenId)
-      if(!user) return next()
+      if(!user) {
+        return next()
+      }
       req.user = user
-      console.log(req.user)
-      return next()
-      
+      console.log("req.user",req.user)
+     next()
+
     }
+    
     catch(err) {
-        return next(err)
+        return res.redirect("/login")
     }
 }
 

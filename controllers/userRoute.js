@@ -15,10 +15,11 @@ async function handleCreateNewUser(req,res) {
 async function handleLogInUser(req,res) {
     const {email,password} = req.body
     const user = await User.findOne({email,password})
+    console.log(user)
     if(!user) return res.redirect("/login")
     const token = setUser(user)
     res.cookie("uid", token)
-    return res.redirect("/")
+    return res.redirect(`/?username=${user.username}`)
 }
 
 module.exports = {

@@ -1,11 +1,6 @@
 const path = require("path")
-const { getUser } = require("../utlities/service")
 
 async function handleHomePage(req,res) {
-    const tokenId = req.cookies.uid;    
-    if(!tokenId) return res.redirect("/login")
-    const user = await getUser(tokenId)
-    if(!user) return res.redirect("/login")
      res.sendFile(path.join(__dirname, "../public", "index.html"))
 }
 

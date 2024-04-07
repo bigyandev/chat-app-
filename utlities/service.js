@@ -9,6 +9,7 @@ function setUser(user) {
 }
 
 function getUser(tokenId) {
+     if(!tokenId) return null
      return jwt.verify(tokenId,secret)
 }
 
