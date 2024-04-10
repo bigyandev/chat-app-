@@ -1,13 +1,25 @@
 //socket 
 const chatForm = document.getElementById("chat-form")
 const chatMessage = document.querySelector(".chat-message")
+const sender = document.getElementById("sender")
+const userList = document.getElementById("user-list")
 const socket = io()
 
 socket.on('message', (message) => {
     outputMessage(message)
     chatMessage.scrollTop = chatMessage.scrollHeight
-
 })
+
+socket.on('username', (username) => {
+    sender.textContent = username.toUpperCase()
+})
+
+socket.on("allUsers", async (allUsers) => {
+        const users = await allUsers
+        console.log(users)
+        outputUsers(users)
+    })
+
 
 //message submission
 chatForm.addEventListener('submit', (e) => {
@@ -16,7 +28,7 @@ chatForm.addEventListener('submit', (e) => {
     socket.emit("chatMsg", msg)
     e.target.elements.msg.value = " "
     e.target.elements.msg.focus()
-    
+
 
 })
 
@@ -30,5 +42,26 @@ function outputMessage(message) {
     </p>`
 
     document.querySelector(".chat-message").appendChild(div)
+}
+
+function outputUsers(allusers, message) {
+    allusers.map((user) => {
+        if (user.toString().toUpperCase() !== sender.textContent) {
+            const li = document.createElement("li")
+            //const activeStatus = message.activeStatus;
+            const dot = document.createElement("div")
+            dot.classList.add("circle")
+            //dot.style.backgroundColor = activeStatus == true ? "green" : "red"
+            li.textContent = user
+            li.appendChild(dot)
+            userList.appendChild(li)
+        }
+    })
+
+
+
+
+
+
 }
 
