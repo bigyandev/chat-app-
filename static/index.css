@@ -119,14 +119,20 @@ button {
 .user-panel {
     width: 100%;
 }
-
-#user-list {
+.active-users {
+    text-align: center;
+   
+}
+.user {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 50%;
     width: 100%;
     flex-direction: column;
+}
+#user-list {
+    width: 100%;
 }
 li {
     list-style-type: none;

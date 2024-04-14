@@ -1,9 +1,14 @@
+
 //socket 
 const chatForm = document.getElementById("chat-form")
 const chatMessage = document.querySelector(".chat-message")
 const sender = document.getElementById("sender")
 const userList = document.getElementById("user-list")
 const socket = io()
+
+socket.on("connect", (socket) => {
+    socket.emit("requestAllUsers")
+})
 
 socket.on('message', (message) => {
     outputMessage(message)
@@ -15,10 +20,10 @@ socket.on('username', (username) => {
 })
 
 socket.on("allUsers", async (allUsers) => {
-        const users = await allUsers
-        console.log(users)
-        outputUsers(users)
-    })
+    const users = await allUsers
+    console.log(users)
+    outputUsers(users)
+})
 
 
 //message submission
@@ -44,18 +49,25 @@ function outputMessage(message) {
     document.querySelector(".chat-message").appendChild(div)
 }
 
-function outputUsers(allusers, message) {
+function outputUsers(allusers) {
+    userList.innerHTML = ""
+    const userSet = new Set()
     allusers.map((user) => {
-        if (user.toString().toUpperCase() !== sender.textContent) {
+        if (user.username.toString().toUpperCase() === sender.textContent) {
+            return
+        }
+        if (!userSet.has(user.username)) {
+            userSet.add(user.username)
             const li = document.createElement("li")
-            //const activeStatus = message.activeStatus;
+            const activeStatus = user.activeStatus;
             const dot = document.createElement("div")
             dot.classList.add("circle")
-            //dot.style.backgroundColor = activeStatus == true ? "green" : "red"
-            li.textContent = user
+            dot.style.backgroundColor = activeStatus ? "green" : "red"
+            li.textContent = user.username
             li.appendChild(dot)
             userList.appendChild(li)
         }
+
     })
 
 
