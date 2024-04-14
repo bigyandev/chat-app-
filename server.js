@@ -58,7 +58,7 @@ io.on("connection",  async (socket) => {
         }
         emitAllUsers()
         io.emit("message", formatMessage(botName,`${username.toUpperCase()} has left the chat`, false))
-        //onlineUsers.delete(userId)
+        onlineUsers.delete(userId)
     })
     socket.emit("username", username)
     //listen for msg
